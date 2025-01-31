@@ -1,0 +1,124 @@
+html,body{
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  font-family: Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Fira Sans', 'Droid Sans', 'Helvetica Neue',sans-serif;
+}
+.container{
+  height: 100%;
+  width: 100%;
+  box-sizing: border-box;
+  padding-top: 40px;
+  aspect-ratio: 1;
+  .con-header{
+    display: grid;
+    grid-template-columns: 33% 33% 33%;
+    height: 50px;
+    .val-wrap{
+      display: inline-block; 
+    }
+    .mines-left,.timer{
+      display: flex;
+      align-items: center;
+      justify-content: left;
+      .val-wrap{
+        background-color: black;
+        color: white;
+        padding: 10px;
+        min-width: 35px;
+        text-align: center;
+        border-radius: 10px;
+      }
+    }
+    .timer{
+      justify-content: right;
+    }
+    .start{
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      .val-wrap{
+        background-color: #3258E9;
+        color: white;
+        cursor: pointer;
+        user-select: none;
+        border-radius: 10px;
+        padding: 7px 10px;
+        &:hover{
+          background-color: darken(#3258E9, 3%);
+        }
+        &:active{
+          background-color: darken(#3258E9, 7%);
+        }
+      }
+    }
+  }
+  .board-wrap{
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 500px;   
+    background-color: white;
+    .board{
+      width: 100%;
+      height: 100%;
+      display: grid;
+      grid-template-columns: repeat(9, minmax(0, 1fr));
+      border-radius: 10px;
+      border: 10px solid lighten(gray, 15%);
+      padding-right: 1px;
+      padding-bottom: 1px;
+      box-sizing: border-box;
+      .square{
+        aspect-ratio: 1;
+      }
+    }
+    @media(max-width: 600px){
+      width: 95%;
+    }
+  }
+}
+
+.square{
+  border: 2px solid transparent;
+  user-select: none;
+  background-color: #BDBDBD;
+  outline: 1px solid gray;
+  &.empty{
+    border-top: 2px solid white;
+    border-left: 2px solid white;
+    border-right: 2px solid #7B7B7B;
+    border-bottom: 2px solid #7B7B7B;
+    outline: none;
+    transition: border 0.2s ease;
+    cursor: pointer;
+    &:hover{
+      background-color: darken(#BDBDBD, 3%);
+    }
+    &:active{
+      border: 2px solid #BDBDBD;
+    }
+  }
+  .icon{
+    display: none;
+    box-sizing: border-box;
+    object-fit: contain;
+    height: 100%;
+    width: 100%;
+  }
+  &.flagged .flag,
+  &.bomb .bomb-result-location,
+  &.bomb-lose .bomb-result-error,
+  &.bomb-wrong .bomb-result-incorrect,
+  &.clue-1 .square-1,
+  &.clue-2 .square-2,
+  &.clue-3 .square-3,
+  &.clue-4 .square-4,
+  &.clue-5 .square-5,
+  &.clue-6 .square-6,
+  &.clue-7 .square-7,
+  &.clue-8 .square-8 {
+    display: block;
+    padding: 5px;
+  }
+}
